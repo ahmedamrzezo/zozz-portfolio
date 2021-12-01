@@ -1,0 +1,95 @@
+@import './colors';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.form-group {
+		@apply flex items-center;
+	}
+	.form-control {
+		@apply px-4 py-2 rounded-xl border-2 border-primary_color_50 h-20 w-full font-light text-2xl focus:outline-none focus:border-primary_color bg-transparent;
+	}
+	textarea.form-control {
+		@apply resize-none h-28;
+	}
+
+	.nav-links {
+		@apply flex items-center gap-8;
+
+		&__link-item {
+			@apply text-primary_color hover:text-secondary_color transition-colors text-3xl;
+			&--active {
+				@apply font-bold;
+			}
+		}
+	}
+
+	.section {
+		@apply flex flex-col;
+
+		&__title {
+			@apply font-bold text-5xl mb-3;
+		}
+		&__description {
+			@apply text-2xl text-gray-500;
+		}
+		&__content {
+			@apply mt-16;
+		}
+	}
+
+	.card {
+		@apply p-6 rounded-xl border-2 border-primary_color_50 shadow-xl;
+
+		&__title {
+			@apply font-bold text-3xl border-b-2 border-primary_color_50 pb-6 capitalize;
+		}
+	}
+
+	.link {
+		@apply text-primary_color hover:underline transition-colors text-2xl;
+	}
+
+	.w-100vw {
+		width: 100vw;
+	}
+	.h-100vh {
+		height: 100vh;
+	}
+
+	.mark {
+		background-image: linear-gradient(
+			to right,
+			$primary_color,
+			$primary_dark_color
+		);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.auth-container {
+		@apply card w-2/3 mx-auto mt-12;
+	}
+
+	.form {
+		@apply flex flex-col gap-y-6;
+	}
+}
+
+html {
+	font-size: 62.5%;
+}
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
