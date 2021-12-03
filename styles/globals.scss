@@ -8,7 +8,7 @@
 		@apply flex items-center;
 	}
 	.form-control {
-		@apply px-4 py-2 rounded-xl border-2 border-primary_color_50 h-20 w-full font-light text-2xl focus:outline-none focus:border-primary_color bg-transparent;
+		@apply px-4 py-2 rounded-xl border-2 border-primary_color h-20 w-full font-light text-2xl focus:outline-none focus:border-primary_color bg-transparent;
 	}
 	textarea.form-control {
 		@apply resize-none h-28;
@@ -32,7 +32,7 @@
 			@apply font-bold text-5xl mb-3;
 		}
 		&__description {
-			@apply text-2xl text-gray-500;
+			@apply text-2xl text-gray;
 		}
 		&__content {
 			@apply mt-16;
@@ -40,10 +40,10 @@
 	}
 
 	.card {
-		@apply p-6 rounded-xl border-2 border-primary_color_50 shadow-xl;
+		@apply p-6 rounded-xl border-2 border-primary_color shadow-xl;
 
 		&__title {
-			@apply font-bold text-3xl border-b-2 border-primary_color_50 pb-6 capitalize;
+			@apply font-bold text-3xl border-b-2 border-primary_color pb-6 capitalize;
 		}
 	}
 

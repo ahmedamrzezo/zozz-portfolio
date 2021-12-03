@@ -1,4 +1,13 @@
-$primary_color: #435b9c;
-$secondary_color: #ffc285;
-$primary_light_color: #e3f1ee;
-$primary_dark_color: #113537;
+$primary_color: #058ed9;
+$secondary_color: #00a8a1;
+$primary_light_color: #eef0f2;
+$primary_dark_color: #353b3c;
+$grey_color: #697874;
+
+:root {
+	--primary_color: #058ed9;
+	--secondary_color: #00a8a1;
+	--primary_dark_color: #353b3c;
+	--primary_light_color: #eef0f2;
+	--grey_color: #697874;
+}

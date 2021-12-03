@@ -1,5 +1,3 @@
-import AddProject from '../../components/projects/AddProject/AddProject';
-
 export default function Add() {
-	return <AddProject />;
+	return <h2>Add Project</h2>;
 }
