@@ -1,12 +1,23 @@
 import ProjectItem from '../../components/projects/ProjectItem/ProjectItem';
+import { server } from '../../config';
 
-export default function Projects() {
+export async function getStaticProps() {
+	const res = await fetch(`${server}/api/projects`, { method: 'GET' });
+	const projects = await res.json();
+	return {
+		props: {
+			projects,
+		},
+	};
+}
+
+export default function Projects({ projects }) {
 	return (
 		<section>
 			<h2>Projects List</h2>
 			<div className="flex gap-x-5">
-				{[1, 2, 3].map((project) => (
-					<ProjectItem project={project} />
+				{projects.map((project) => (
+					<ProjectItem key={project} project={project} />
 				))}
 			</div>
 		</section>
