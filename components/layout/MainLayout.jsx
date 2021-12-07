@@ -7,7 +7,9 @@ function MainLayout({ children }) {
 		<Fragment>
 			<Header />
 
-			<main className="container mx-auto mt-10 mb-auto">{children}</main>
+			<main className="main-content">
+				<div className="container mx-auto">{children}</div>
+			</main>
 
 			<Footer />
 		</Fragment>

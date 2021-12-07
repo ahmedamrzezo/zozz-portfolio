@@ -93,3 +93,9 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
 }
+
+.main-content {
+	height: calc(100vh - 93px);
+	background-color: $secondary_color;
+	padding: 3rem 0;
+}
