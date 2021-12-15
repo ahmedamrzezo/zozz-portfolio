@@ -4,14 +4,22 @@
 @tailwind utilities;
 
 @layer components {
+	.form {
+		@apply flex flex-col gap-y-6 flex-wrap;
+	}
+
 	.form-group {
-		@apply flex items-center;
+		@apply flex items-center flex-col w-1/2;
 	}
 	.form-control {
-		@apply px-4 py-2 rounded-xl border-2 border-primary_color h-20 w-full font-light text-2xl focus:outline-none focus:border-primary_color bg-transparent;
+		@apply px-4 py-2 rounded-xl border-2 border-white h-20 w-full font-light text-2xl focus:outline-none focus:border-primary_color bg-transparent;
 	}
 	textarea.form-control {
 		@apply resize-none h-28;
+	}
+
+	.form-label {
+		@apply text-2xl w-full mb-2;
 	}
 
 	.nav-links {
@@ -70,10 +78,6 @@
 
 	.auth-container {
 		@apply card w-2/3 mx-auto mt-12;
-	}
-
-	.form {
-		@apply flex flex-col gap-y-6;
 	}
 }
 
