@@ -11,7 +11,7 @@ export default async function projects(req, res) {
 }
 
 const addProject = async (req, res) => {
-  const newProject = new Project(req.body);
+  const newProject = new Project(JSON.parse(req.body));
 
   try {
     const project = await newProject.save();
