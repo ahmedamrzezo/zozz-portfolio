@@ -48,7 +48,7 @@
 	}
 
 	.card {
-		@apply p-6 rounded-xl border-2 border-primary_color shadow-xl;
+		@apply p-6 rounded-xl border-2 border-primary_color shadow-xl bg-primary_light_color;
 
 		&__title {
 			@apply font-bold text-3xl border-b-2 border-primary_color pb-6 capitalize;

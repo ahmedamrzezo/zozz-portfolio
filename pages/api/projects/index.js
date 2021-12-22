@@ -1,7 +1,9 @@
-require('../../../db/mongoose');
+import dbConnect from '../../../middleware/mongoose';
 const Project = require('../../../models/project.model');
 
-export default async function projects(req, res) {
+export default async function handler(req, res) {
+  await dbConnect();
+
   if (req.method === 'POST') {
     await addProject(req, res);
   }

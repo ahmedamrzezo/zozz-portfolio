@@ -13,11 +13,11 @@ export async function getStaticProps() {
 
 export default function Projects({ projects }) {
 	return (
-		<section>
-			<h2>Projects List</h2>
-			<div className="flex gap-x-5">
+		<section className="section">
+			<h2 className="section__title">Projects List</h2>
+			<div className="section__content flex gap-x-5">
 				{projects.map((project) => (
-					<ProjectItem key={project} project={project} />
+					<ProjectItem key={project.id} project={project} />
 				))}
 			</div>
 		</section>

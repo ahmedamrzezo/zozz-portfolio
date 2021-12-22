@@ -4,8 +4,8 @@ import Link from 'next/link';
 export default function ProjectItem({ project }) {
 	return (
 		<div className={styles.project}>
-			<Link href={'/projects/' + project}>
-				<a className="link">{project}</a>
+			<Link href={'/projects/' + project.id}>
+				<a className="link">{project.title}</a>
 			</Link>
 		</div>
 	);
