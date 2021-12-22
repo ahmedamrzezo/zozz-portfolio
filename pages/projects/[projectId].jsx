@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { server } from '../../config';
 
@@ -7,7 +9,14 @@ const Project = require('../../models/project.model');
 export default function projectDetails({ project }) {
 	const router = useRouter();
 
-	return <h2>Project details: {project.title}</h2>;
+	return (
+		<Fragment>
+			<Head>
+				<title>Project - {project.title}</title>
+			</Head>
+			<h2>Project details: {project.title}</h2>
+		</Fragment>
+	);
 }
 
 export async function getStaticPaths() {
