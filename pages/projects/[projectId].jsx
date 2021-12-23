@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 				projectId: pr._id.toString(),
 			},
 		})),
-		fallback: false,
+		fallback: 'blocking',
 	};
 }
 
