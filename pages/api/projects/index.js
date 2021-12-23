@@ -1,5 +1,5 @@
 import dbConnect from '../../../middleware/mongoose';
-const Project = require('../../../models/project.model');
+import Project from '../../../models/project.model';
 
 export default async function handler(req, res) {
   await dbConnect();

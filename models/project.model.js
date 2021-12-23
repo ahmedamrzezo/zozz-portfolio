@@ -14,5 +14,5 @@ schema.set('toJSON', {
 	versionKey: false,
 	transform: function (doc, ret) { delete ret._id; }
 });
-
-module.exports = mongoose.models.Project || mongoose.model("Project", schema);
+const Project = mongoose.models.Project || mongoose.model("Project", schema);
+export default Project;
