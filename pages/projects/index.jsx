@@ -4,7 +4,7 @@ import ProjectItem from '../../components/projects/ProjectItem/ProjectItem';
 import { server } from '../../config';
 
 export async function getStaticProps() {
-	const res = await fetch(`${server}projects`, {
+	const res = await fetch(`${server}/projects`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',

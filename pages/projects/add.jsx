@@ -15,7 +15,7 @@ export default function Add() {
 		};
 
 		try {
-			const res = await fetch(`${server}projects`, {
+			const res = await fetch(`${server}/projects`, {
 				body: JSON.stringify(newProject),
 				method: 'POST',
 				headers: {
