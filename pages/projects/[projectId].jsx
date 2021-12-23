@@ -33,12 +33,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-	const res = await fetch(
-		`${server}/api/projects/${context.params.projectId}`,
-		{
-			method: 'GET',
-		}
-	);
+	const res = await fetch(`${server}projects/${context.params.projectId}`, {
+		method: 'GET',
+	});
 	const project = await res.json();
 	return {
 		props: {
