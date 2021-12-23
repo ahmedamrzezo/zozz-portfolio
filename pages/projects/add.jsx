@@ -18,6 +18,9 @@ export default function Add() {
 			const res = await fetch(`${server}projects`, {
 				body: JSON.stringify(newProject),
 				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
 			});
 			if (res.ok) {
 				console.log('success');
