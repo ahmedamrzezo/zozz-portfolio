@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { server } from '../../config';
 
 import dbConnect from '../../middleware/mongoose';
-const Project = require('../../models/project.model');
+import Project from '../../models/project.model';
 
 export default function projectDetails({ project }) {
 	const router = useRouter();
@@ -33,16 +33,29 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-	const res = await fetch(`${server}/projects/${context.params.projectId}`, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
-	const project = await res.json();
-	return {
-		props: {
-			project,
-		},
-	};
+	try {
+		const res = await fetch(`${server}/projects/${context.params.projectId}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		if (res.ok) {
+			const project = await res.json();
+			return {
+				props: {
+					project,
+				},
+			};
+		} else {
+			throw new Error(res.statusText);
+		}
+	} catch (error) {
+		console.error(error);
+		return {
+			props: {
+				project: {},
+			},
+		};
+	}
 }
