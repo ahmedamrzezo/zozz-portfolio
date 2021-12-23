@@ -4,18 +4,27 @@ import ProjectItem from '../../components/projects/ProjectItem/ProjectItem';
 import { server } from '../../config';
 
 export async function getStaticProps() {
-	const res = await fetch(`${server}/projects`, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
-	const projects = await res.json();
-	return {
-		props: {
-			projects,
-		},
-	};
+	try {
+		const res = await fetch(`${server}/projects`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+
+		if (res.ok) {
+			const projects = await res.json();
+			return {
+				props: {
+					projects,
+				},
+			};
+		} else {
+			throw new Error(res.statusText);
+		}
+	} catch (error) {
+		console.error(error);
+	}
 }
 
 export default function Projects({ projects }) {
