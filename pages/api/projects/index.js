@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 }
 
 const addProject = async (req, res) => {
-  const newProject = new Project(JSON.parse(req.body));
+  const newProject = new Project(req.body);
 
   try {
     const project = await newProject.save();

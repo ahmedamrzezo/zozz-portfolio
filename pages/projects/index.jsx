@@ -18,6 +18,7 @@ export async function getStaticProps() {
 				props: {
 					projects,
 				},
+				revalidate: 1,
 			};
 		} else {
 			throw new Error(res.statusText);
