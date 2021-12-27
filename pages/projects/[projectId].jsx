@@ -12,7 +12,7 @@ export default function projectDetails({ project }) {
 	return (
 		<Fragment>
 			<Head>
-				<title>Project - {project.title}</title>
+				<title>{project.title} - Project - Zozz</title>
 			</Head>
 			<h2>Project details: {project.title}</h2>
 		</Fragment>

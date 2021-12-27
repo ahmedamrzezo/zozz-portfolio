@@ -37,7 +37,7 @@ export default function Projects({ projects }) {
 	return (
 		<Fragment>
 			<Head>
-				<title>Project List</title>
+				<title>Projects - Zozz</title>
 			</Head>
 			<section className="section">
 				<h2 className="section__title">Projects List</h2>
