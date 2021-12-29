@@ -1,6 +1,18 @@
 import dbConnect from '../../../middleware/mongoose';
 import Project from '../../../models/project.model';
 
+// const uploadProjectImages = multer({
+// 	limits: {
+// 		fileSize: 1000000
+// 	},
+// 	fileFilter(req, file, cb) {
+// 		if (file.mimetype.split('/')[0] == 'image') {
+// 			return cb(undefined, true);
+// 		}
+// 		return cb(new Error('Invalid image extension'), false);
+// 	}
+// });
+
 export default async function handler(req, res) {
   await dbConnect();
 
