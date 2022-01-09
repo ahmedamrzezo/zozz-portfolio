@@ -1,15 +1,21 @@
+import dynamic from 'next/dynamic';
 import { Fragment } from 'react';
-import Header from './Header';
 import Footer from './Footer';
+import { AuthContextProvider } from '../../store/auth-context';
+
+const Header = dynamic(() => import('./Header'));
 
 function MainLayout({ children }) {
 	return (
 		<Fragment>
-			<Header />
-
-			<main className="main-content">
-				<div className="container mx-auto">{children}</div>
-			</main>
+			<AuthContextProvider>
+				{typeof window !== 'undefined' && <Header />}
+				<main className="main-content">
+					<div className="container mx-auto">
+						{children}
+					</div>
+				</main>
+			</AuthContextProvider>
 
 			<Footer />
 		</Fragment>
