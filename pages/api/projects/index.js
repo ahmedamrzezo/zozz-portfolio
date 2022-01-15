@@ -1,5 +1,7 @@
+import nextConnect from 'next-connect';
 import dbConnect from '../../../middleware/mongoose';
 import Project from '../../../models/project.model';
+import auth from '../../../middleware/auth';
 
 // const uploadProjectImages = multer({
 // 	limits: {
@@ -13,18 +15,15 @@ import Project from '../../../models/project.model';
 // 	}
 // });
 
-export default async function handler(req, res) {
-  await dbConnect();
+const handler = nextConnect();
 
-  if (req.method === 'POST') {
-    await addProject(req, res);
-  }
-  if (req.method === 'GET') {
-    await getProjects(req, res);
-  }
-}
+handler
+  .use((req, res, next) => auth(req, res, next, true))
+  .post((req, res) => addProject(req, res))
+  .get((req, res) => getProjects(req, res))
 
 const addProject = async (req, res) => {
+  await dbConnect();
   const newProject = new Project(req.body);
 
   try {
@@ -36,6 +35,7 @@ const addProject = async (req, res) => {
 };
 
 const getProjects = async (req, res) => {
+  await dbConnect();
   try {
     const projects = await Project.find();
     res.status(200).json(projects);
@@ -43,3 +43,5 @@ const getProjects = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
+export default handler;
