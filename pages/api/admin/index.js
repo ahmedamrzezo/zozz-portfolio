@@ -1,10 +1,12 @@
 import nextConnect from "next-connect";
+import auth from "../../../middleware/auth";
 import dbConnect from "../../../middleware/mongoose";
 import Admin from "../../../models/admin.model";
 
 const handler = nextConnect();
 
 handler
+	.use((req, res, next) => auth(req, res, next))
 	.get(async (req, res) => {
 		await dbConnect();
 

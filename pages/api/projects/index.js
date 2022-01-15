@@ -18,7 +18,7 @@ import auth from '../../../middleware/auth';
 const handler = nextConnect();
 
 handler
-  .use((req, res, next) => auth(req, res, next))
+  .use((req, res, next) => auth(req, res, next, true))
   .post((req, res) => addProject(req, res))
   .get((req, res) => getProjects(req, res))
 
