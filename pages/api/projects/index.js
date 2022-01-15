@@ -1,6 +1,7 @@
 import nextConnect from 'next-connect';
 import dbConnect from '../../../middleware/mongoose';
 import Project from '../../../models/project.model';
+import auth from '../../../middleware/auth';
 
 // const uploadProjectImages = multer({
 // 	limits: {
@@ -17,8 +18,9 @@ import Project from '../../../models/project.model';
 const handler = nextConnect();
 
 handler
+  .use((req, res, next) => auth(req, res, next))
   .post((req, res) => addProject(req, res))
-  .get((req,res) => getProjects(req, res))
+  .get((req, res) => getProjects(req, res))
 
 const addProject = async (req, res) => {
   await dbConnect();

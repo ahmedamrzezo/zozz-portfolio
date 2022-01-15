@@ -2,8 +2,6 @@ import nextConnect from "next-connect";
 import dbConnect from "../../../middleware/mongoose";
 import Admin from "../../../models/admin.model";
 
-const bcrypt = require('bcrypt');
-
 const handler = nextConnect();
 
 handler
@@ -14,6 +12,8 @@ handler
 		res.status(200).send(admins);
 	})
 	.post(async (req, res) => {
+		await dbConnect();
+
 		const { username, password } = req.body;
 		const usernameExisted = await Admin.findOne({ username });
 
