@@ -13,6 +13,10 @@ const schema = new mongoose.Schema({
 		required: true,
 		trim: true,
 		minlength: 8
+	},
+	token: {
+		type: String,
+		required: true
 	}
 });
 
@@ -22,7 +26,7 @@ schema.methods.toJSON = function () {
 	});
 
 	delete user.password;
-	delete user.tokens;
+	delete user.token;
 	delete user.name;
 	delete user._id;
 	delete user.__v;
@@ -62,6 +66,7 @@ schema.methods.login = async function () {
 	const admin = this;
 	const token = jwt.sign({ id: admin._id.toString(), username: admin.username }, process.env.JWTSECRET, { expiresIn: '2h' });
 
+	admin.token = token;
 	await admin.save();
 
 	return token;

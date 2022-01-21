@@ -17,6 +17,7 @@ const FormField = ({
 	label,
 	id,
 	selectItems,
+	fieldRef,
 }) => {
 	const refs = {
 		[name]: useRef(),
@@ -67,7 +68,7 @@ const FormField = ({
 				// onChange={onChange}
 				// onFocus={onFocus}
 				// onBlur={onBlur}
-				// ref={refs[name]}
+				ref={fieldRef}
 			/>
 		),
 		textarea: (
@@ -79,8 +80,7 @@ const FormField = ({
 				name={name}
 				id={id}
 				rows="5"
-				required={required}
-			></textarea>
+				required={required}></textarea>
 		),
 		select: (
 			<select
@@ -90,8 +90,7 @@ const FormField = ({
 			${isValid && touched && 'border-success'}`}
 				name={name}
 				id={id}
-				required={required}
-			>
+				required={required}>
 				<option value="">Select {name}</option>
 				{selectItems ? (
 					selectItems.map((item, id) => (
@@ -109,7 +108,9 @@ const FormField = ({
 	return (
 		<React.Fragment>
 			<div className={groupClasses}>
-				<label className="text-2xl w-full mb-2 text-white" htmlFor={id}>
+				<label
+					className="text-2xl w-full mb-2 text-white"
+					htmlFor={id}>
 					{label}
 				</label>
 				{types[fieldType]}

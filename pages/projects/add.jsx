@@ -1,21 +1,34 @@
 import { useRouter } from 'next/dist/client/router';
-import { useRef } from 'react';
+import { useContext, useEffect } from 'react';
 import Button from '../../components/shared/Button';
 import FormField from '../../components/shared/FormField';
-import { server } from '../../config';
+import { getFormValues } from '../../utils/helper';
+import AuthContext from '../../store/auth-context';
 
 export default function Add() {
-	const titleRef = useRef('');
 	const router = useRouter();
+
+	const authCtx = useContext(AuthContext);
+
+	useEffect(() => {
+		if (!authCtx.isAdmin) {
+			router.push('/');
+		}
+		return;
+	}, []);
 
 	const addProject = async (ev) => {
 		ev.preventDefault();
 
 		const newProject = {
-			title: titleRef.current.value,
+			title: getFormValues(ev, 'title'),
+			description: getFormValues(ev, 'description'),
+			skills: getFormValues(ev, 'skills'),
+			startedAt: getFormValues(ev, 'startedAt'),
+			completedAt: getFormValues(ev, 'completedAt'),
 		};
 
-		console.log(titleRef);
+		console.log(newProject);
 
 		// try {
 		// 	const res = await fetch(`${server}/projects`, {
@@ -38,7 +51,9 @@ export default function Add() {
 	return (
 		<section className="section">
 			<h2 className="section__title">Add Project</h2>
-			<form className="form section__content" onSubmit={addProject}>
+			<form
+				className="form section__content"
+				onSubmit={addProject}>
 				<FormField
 					label="Title"
 					name="title"
@@ -75,8 +90,8 @@ export default function Add() {
 					/>
 					<FormField
 						label="Completed At"
-						name="startedAt"
-						id="startedAt"
+						name="completedAt"
+						id="completedAt"
 						type="date"
 						fieldType="input"
 						required={true}

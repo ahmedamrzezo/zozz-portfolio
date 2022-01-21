@@ -3,6 +3,7 @@ import Admin from '../models/admin.model';
 import dbConnect from './mongoose';
 
 const auth = async (req, res, next, postOnly = false) => {
+	console.log(req.cookies);
 	if (req.method !== 'POST', postOnly) { return next(); }
 
 	try {
