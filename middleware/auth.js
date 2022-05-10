@@ -3,13 +3,11 @@ import Admin from '../models/admin.model';
 import dbConnect from './mongoose';
 
 const auth = async (req, res, next, postOnly = false) => {
-	console.log(req.cookies);
-	if (req.method !== 'POST', postOnly) { return next(); }
+	if (req.method !== 'POST' && postOnly) { return next(); }
 
 	try {
-		if (!req.headers.authorization) { throw new Error('There is no token!') }
-		const token = req.headers.authorization.replace('Bearer ', '');
-
+		const token = req.cookies.token;
+		if (!token) { throw new Error('There is no token!') }
 		const decoded = jsonwebtoken.verify(token, process.env.JWTSECRET);
 
 		await dbConnect();
@@ -20,6 +18,10 @@ const auth = async (req, res, next, postOnly = false) => {
 		});
 
 		if (!admin) { throw new Error('You are not authorized!') }
+
+		if (Date.now() >= decoded.exp * 1000) {
+			throw new Error('Token Expired!');
+		}
 
 		req.token = token;
 		req.admin = admin;

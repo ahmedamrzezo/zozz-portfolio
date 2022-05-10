@@ -10,12 +10,33 @@ export default function Add() {
 
 	const authCtx = useContext(AuthContext);
 
-	useEffect(() => {
-		if (!authCtx.isAdmin) {
-			router.push('/');
+	// useEffect(() => {
+	// 	if (!authCtx.isAdmin) {
+	// 		router.push('/');
+	// 	}
+	// 	return;
+	// }, []);
+
+	const addNewProject = async (newProject) => {
+		try {
+			const res = await fetch(`/projects`, {
+				body: JSON.stringify(newProject),
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+			if (res.ok) {
+				console.log('success');
+				console.log(await res.text());
+				// router.push('/projects');
+			} else {
+				throw new Error(res.statusText);
+			}
+		} catch (error) {
+			console.error(error);
 		}
-		return;
-	}, []);
+	};
 
 	const addProject = async (ev) => {
 		ev.preventDefault();
@@ -30,23 +51,7 @@ export default function Add() {
 
 		console.log(newProject);
 
-		// try {
-		// 	const res = await fetch(`${server}/projects`, {
-		// 		body: JSON.stringify(newProject),
-		// 		method: 'POST',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 	});
-		// 	if (res.ok) {
-		// 		console.log('success');
-		// 		router.push('/projects');
-		// 	} else {
-		// 		throw new Error(res.statusText);
-		// 	}
-		// } catch (error) {
-		// 	console.error(error);
-		// }
+		addNewProject(newProject);
 	};
 	return (
 		<section className="section">

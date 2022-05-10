@@ -2,7 +2,7 @@ import { serialize } from "cookie"
 
 const TOKEN_NAME = 'token';
 
-export const MAX_AGE = 60 * 60 * 2;
+export const MAX_AGE = 60;
 
 export async function setTokenCookie(res, token) {
 	const cookie = serialize(TOKEN_NAME, token, {
